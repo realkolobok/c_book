@@ -1,0 +1,37 @@
+Starting program: /home/ingenium/c_book/3/exercises/3_1/test
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00000000004004a2 in main () at test_binsearch.c:16
+16	        arr[i] = i;
+
+// info proc mappings
+
+process 141101
+Mapped address spaces:
+
+Start Addr         End Addr           Size               Offset             Perms File
+0x0000000000400000 0x0000000000401000 0x1000             0x0                r-xp  /home/ingenium/c_book/3/exercises/3_1/test
+0x0000000000401000 0x0000000000402000 0x1000             0x1000             r--p  /home/ingenium/c_book/3/exercises/3_1/test
+0x0000000000402000 0x0000000000403000 0x1000             0x1000             r--p  /home/ingenium/c_book/3/exercises/3_1/test
+0x0000000000403000 0x0000000000404000 0x1000             0x2000             rw-p  /home/ingenium/c_book/3/exercises/3_1/test
+0x00007ffff7daa000 0x00007ffff7dad000 0x3000             0x0                rw-p
+0x00007ffff7dad000 0x00007ffff7f1d000 0x170000           0x0                r-xp  /usr/lib64/libc.so.6
+0x00007ffff7f1d000 0x00007ffff7f93000 0x76000            0x170000           r--p  /usr/lib64/libc.so.6
+0x00007ffff7f93000 0x00007ffff7f97000 0x4000             0x1e5000           r--p  /usr/lib64/libc.so.6
+0x00007ffff7f97000 0x00007ffff7f99000 0x2000             0x1e9000           rw-p  /usr/lib64/libc.so.6
+0x00007ffff7f99000 0x00007ffff7fa3000 0xa000             0x0                rw-p
+0x00007ffff7fbe000 0x00007ffff7fc2000 0x4000             0x0                r--p  [vvar]
+0x00007ffff7fc2000 0x00007ffff7fc4000 0x2000             0x0                r--p  [vvar_vclock]
+0x00007ffff7fc4000 0x00007ffff7fc6000 0x2000             0x0                r-xp  [vdso]
+0x00007ffff7fc6000 0x00007ffff7ff0000 0x2a000            0x0                r-xp  /usr/lib64/ld-linux-x86-64.so.2
+0x00007ffff7ff0000 0x00007ffff7ffb000 0xb000             0x2a000            r--p  /usr/lib64/ld-linux-x86-64.so.2
+0x00007ffff7ffb000 0x00007ffff7ffd000 0x2000             0x35000            r--p  /usr/lib64/ld-linux-x86-64.so.2
+0x00007ffff7ffd000 0x00007ffff7ffe000 0x1000             0x37000            rw-p  /usr/lib64/ld-linux-x86-64.so.2
+0x00007ffff7ffe000 0x00007ffff7fff000 0x1000             0x0                rw-p
+0x00007ffffffdd000 0x00007ffffffff000 0x22000            0x0                rw-p  [stack]   !-- Stack is smaller than array size
+0xffffffffff600000 0xffffffffff601000 0x1000             0x0                --xp  [vsyscall]
+
+// p sizeof(arr)
+
+$1 = 400000000 -- in decimal
+$2 = 0x17d78400 -- in hex

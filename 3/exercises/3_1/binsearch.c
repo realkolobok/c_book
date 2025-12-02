@@ -1,17 +1,42 @@
+/*
+ * If array size is very big, then this program will crash with segmentation fault.
+ * This happens because of the limited stack size. This can be examined in gdb.txt file
+ *
+ * gdb is actually so useful, i need to play more with it
+ */
+
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int binsearch(int x, int v[], int n);
 int binsearch_new(int x, int v[], int n);
 
+#define ARRAYLEN 100000
+#define SAMPLESIZE 1000
+
 int main()
 {
-    int arr[20];
-    for (int i = 0; i < 20; i++)
+    clock_t start, end;
+    int arr[ARRAYLEN]; // array to search
+    int i;
+    for (i = 0; i < ARRAYLEN; i++)
         arr[i] = i;
-    int pos = binsearch(4, arr, 20);
-    printf("binsearch:\tPos: %d\tNum at pos: %d\n", pos, arr[pos]);
-    pos = binsearch_new(4, arr, 20);
-    printf("binsearch_new:\tPos: %d\tNum at pos: %d\n", pos, arr[pos]);
+    int t[SAMPLESIZE]; // random nums to look for
+    for (i = 0; i < SAMPLESIZE; i++)
+        t[i] = rand() % (ARRAYLEN+1);
+
+    start = clock();
+    for (i = 0; i < SAMPLESIZE; i++)
+        binsearch(t[i], arr, ARRAYLEN);
+    end = clock();
+    printf("binsearch:\t%6ld clock tics\n", end - start);
+    start = clock();
+    for (i = 0; i < SAMPLESIZE; i++)
+        binsearch_new(t[i], arr, ARRAYLEN);
+    end = clock();
+    printf("binsearch_new:\t%6ld clock tics\n", end - start);
     return 0;
 }
 
