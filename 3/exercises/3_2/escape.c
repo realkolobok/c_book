@@ -15,7 +15,9 @@ int main()
         i++;
     }
     escape(s, t);
-    printf("%s\n", s);
+    printf("Escape: %s\n", s);
+    unescape(t, s);
+    printf("Unescape: %s\n", t);
     return 0;
 }
 
@@ -47,6 +49,43 @@ void escape(char s[], char t[])
             default:
                 s[j] = t[i];
                 break;
+        }
+    }
+    s[j] = '\0';
+}
+
+void unescape(char s[], char t[])
+{
+    int i, j;
+    for (i = j = 0; t[i] != '\0'; i++, j++) {
+        if (t[i] != '\\') {
+            s[j] = t[i];
+        } else {
+            switch (t[i+1]) {
+            case 't':
+                s[j] = '\t';
+                i++;
+                break;
+            case 'n':
+                s[j] = '\n';
+                i++;
+                break;
+            case 'b':
+                s[j] = '\b';
+                i++;
+                break;
+            case 'r':
+                s[j] = '\r';
+                i++;
+                break;
+            case 'v':
+                s[j] = '\v';
+                i++;
+                break;
+            default:
+                s[j] = '\\';
+                break;
+            }
         }
     }
     s[j] = '\0';

@@ -1,1 +1,6 @@
-Test\tcode f\nor escap\te program\n.\n
+Escape: This\tis\ntest\tfile for t\the program.\n\n\n
+Unescape: This	is
+test	file for t	he program.
+
+
+
