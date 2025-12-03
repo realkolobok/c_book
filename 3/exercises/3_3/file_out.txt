@@ -1,0 +1,4 @@
+Original: a-d-f
+Expanded: abcdef
+Original: -0-3b-e-
+Expanded: -0123bcde-
