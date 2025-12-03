@@ -7,6 +7,15 @@ void unescape(char s[], char t[]);
 
 int main()
 {
+    int c, i;
+    i = 0;
+    char t[ARRAYLEN], s[ARRAYLEN];
+    while ((c = getchar()) != EOF) {
+        t[i] = c;
+        i++;
+    }
+    escape(s, t);
+    printf("%s\n", s);
     return 0;
 }
 
